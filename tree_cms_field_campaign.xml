@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Tree: CMS Field Campaign</h:title>
+    <model>
+      <instance>
+        <tree_cms_field_campaign id="tree_cms_field_campaign">
+          <plot_number/>
+          <date_time/>
+          <tree/>
+          <code/>
+          <live_dead/>
+          <dbh/>
+          <top_crown_height/>
+          <notes/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </tree_cms_field_campaign>
+      </instance>
+      <bind nodeset="/tree_cms_field_campaign/plot_number" type="string"/>
+      <bind nodeset="/tree_cms_field_campaign/date_time" type="dateTime"/>
+      <bind nodeset="/tree_cms_field_campaign/tree" type="string"/>
+      <bind nodeset="/tree_cms_field_campaign/code" type="string"/>
+      <bind nodeset="/tree_cms_field_campaign/live_dead" type="select1"/>
+      <bind nodeset="/tree_cms_field_campaign/dbh" type="decimal"/>
+      <bind nodeset="/tree_cms_field_campaign/top_crown_height" type="decimal"/>
+      <bind nodeset="/tree_cms_field_campaign/notes" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/tree_cms_field_campaign/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <input ref="/tree_cms_field_campaign/plot_number">
+      <label>Plot #</label>
+    </input>
+    <input ref="/tree_cms_field_campaign/date_time">
+      <label>Date and Time</label>
+    </input>
+    <input ref="/tree_cms_field_campaign/tree">
+      <label>Tree #</label>
+    </input>
+    <input ref="/tree_cms_field_campaign/code">
+      <label>Code</label>
+    </input>
+    <select1 ref="/tree_cms_field_campaign/live_dead">
+      <label>Live or Dead</label>
+      <item>
+        <label>Live</label>
+        <value>live</value>
+      </item>
+      <item>
+        <label>Dead</label>
+        <value>dead</value>
+      </item>
+    </select1>
+    <input ref="/tree_cms_field_campaign/dbh">
+      <label>DBH (cm)</label>
+    </input>
+    <input ref="/tree_cms_field_campaign/top_crown_height">
+      <label>Top Crown Height (m)</label>
+    </input>
+    <input ref="/tree_cms_field_campaign/notes">
+      <label>Notes</label>
+    </input>
+  </h:body>
+</h:html>

@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<h:html xmlns="http://www.w3.org/2002/xforms" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:jr="http://openrosa.org/javarosa" xmlns:orx="http://openrosa.org/xforms/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <h:head>
+    <h:title>Plot: CMS Field Campaign</h:title>
+    <model>
+      <instance>
+        <cms_field_campaign id="plot_cms_field_campaign">
+          <plot_out_come/>
+          <plot_number/>
+          <date_time/>
+          <county/>
+          <gps/>
+          <loc/>
+          <external_gps>
+            <latitude/>
+            <longitude/>
+            <accuracy/>
+          </external_gps>
+          <data_collected_by>
+            <collected_by/>
+            <team/>
+          </data_collected_by>
+          <forest_type/>
+          <site_description>
+            <general_site_descipt/>
+            <understory/>
+          </site_description>
+          <fixed_variable/>
+          <baf/>
+          <site_image/>
+          <comments/>
+          <meta>
+            <instanceID/>
+          </meta>
+        </cms_field_campaign>
+      </instance>
+      <bind nodeset="/cms_field_campaign/plot_out_come" type="select1"/>
+      <bind nodeset="/cms_field_campaign/plot_number" type="string"/>
+      <bind nodeset="/cms_field_campaign/date_time" type="dateTime"/>
+      <bind nodeset="/cms_field_campaign/county" type="select1"/>
+      <bind nodeset="/cms_field_campaign/gps" type="select1"/>
+      <bind nodeset="/cms_field_campaign/loc" relevant="selected( /cms_field_campaign/gps ,'internal_gps')" type="geopoint"/>
+      <bind nodeset="/cms_field_campaign/external_gps" relevant="selected( /cms_field_campaign/gps ,'external_gps')"/>
+      <bind nodeset="/cms_field_campaign/external_gps/latitude" type="decimal"/>
+      <bind nodeset="/cms_field_campaign/external_gps/longitude" type="decimal"/>
+      <bind nodeset="/cms_field_campaign/external_gps/accuracy" type="string"/>
+      <bind nodeset="/cms_field_campaign/data_collected_by/collected_by" type="string"/>
+      <bind nodeset="/cms_field_campaign/data_collected_by/team" type="string"/>
+      <bind nodeset="/cms_field_campaign/forest_type" type="select1"/>
+      <bind nodeset="/cms_field_campaign/site_description/general_site_descipt" type="string"/>
+      <bind nodeset="/cms_field_campaign/site_description/understory" type="string"/>
+      <bind nodeset="/cms_field_campaign/fixed_variable" type="select1"/>
+      <bind nodeset="/cms_field_campaign/baf" type="select1"/>
+      <bind nodeset="/cms_field_campaign/site_image" type="binary"/>
+      <bind nodeset="/cms_field_campaign/comments" type="string"/>
+      <bind calculate="concat('uuid:', uuid())" nodeset="/cms_field_campaign/meta/instanceID" readonly="true()" type="string"/>
+    </model>
+  </h:head>
+  <h:body>
+    <select1 ref="/cms_field_campaign/plot_out_come">
+      <label>Plot Out Come</label>
+      <item>
+        <label>Successful</label>
+        <value>successful</value>
+      </item>
+      <item>
+        <label>Owner Refusal</label>
+        <value>owner_refusal</value>
+      </item>
+      <item>
+        <label>Unsuccessful</label>
+        <value>unsuccessful</value>
+      </item>
+    </select1>
+    <input ref="/cms_field_campaign/plot_number">
+      <label>Plot #</label>
+    </input>
+    <input ref="/cms_field_campaign/date_time">
+      <label>Date and Time</label>
+    </input>
+    <select1 ref="/cms_field_campaign/county">
+      <label>County</label>
+      <item>
+        <label>Washington</label>
+        <value>washington</value>
+      </item>
+      <item>
+        <label>Garrett</label>
+        <value>garrett</value>
+      </item>
+      <item>
+        <label>Allegany</label>
+        <value>allegany</value>
+      </item>
+    </select1>
+    <select1 ref="/cms_field_campaign/gps">
+      <label>Gps</label>
+      <item>
+        <label>Internal GPS</label>
+        <value>internal_gps</value>
+      </item>
+      <item>
+        <label>External GPS</label>
+        <value>external_gps</value>
+      </item>
+    </select1>
+    <input ref="/cms_field_campaign/loc">
+      <label>Phone Location</label>
+      <hint>GPS coordinates can only be collected when outside.</hint>
+    </input>
+    <group appearance="field-list" ref="/cms_field_campaign/external_gps">
+      <label>External GPS</label>
+      <input ref="/cms_field_campaign/external_gps/latitude">
+        <label>Latitude</label>
+      </input>
+      <input ref="/cms_field_campaign/external_gps/longitude">
+        <label>Longitude</label>
+      </input>
+      <input ref="/cms_field_campaign/external_gps/accuracy">
+        <label>Accuracy</label>
+      </input>
+    </group>
+    <group appearance="field-list" ref="/cms_field_campaign/data_collected_by">
+      <label>Data Collecte by</label>
+      <input ref="/cms_field_campaign/data_collected_by/collected_by">
+        <label>Collected by</label>
+      </input>
+      <input ref="/cms_field_campaign/data_collected_by/team">
+        <label>Team</label>
+      </input>
+    </group>
+    <select1 ref="/cms_field_campaign/forest_type">
+      <label>Forest Type</label>
+      <item>
+        <label>Coniferous</label>
+        <value>coniferous</value>
+      </item>
+      <item>
+        <label>Deciduous</label>
+        <value>deciduous</value>
+      </item>
+      <item>
+        <label>Mixed</label>
+        <value>mixed</value>
+      </item>
+      <item>
+        <label>Wetland</label>
+        <value>wetland</value>
+      </item>
+      <item>
+        <label>Non Forest</label>
+        <value>non_forest</value>
+      </item>
+    </select1>
+    <group appearance="field-list" ref="/cms_field_campaign/site_description">
+      <label>site_description</label>
+      <input ref="/cms_field_campaign/site_description/general_site_descipt">
+        <label>Site Description</label>
+      </input>
+      <input ref="/cms_field_campaign/site_description/understory">
+        <label>Undestory</label>
+      </input>
+    </group>
+    <select1 ref="/cms_field_campaign/fixed_variable">
+      <label>Fixed or Variable</label>
+      <item>
+        <label>Fixed</label>
+        <value>Fixed</value>
+      </item>
+      <item>
+        <label>Variable</label>
+        <value>Variable</value>
+      </item>
+    </select1>
+    <select1 ref="/cms_field_campaign/baf">
+      <label>BAF</label>
+      <item>
+        <label>10</label>
+        <value>10</value>
+      </item>
+      <item>
+        <label>20</label>
+        <value>20</value>
+      </item>
+      <item>
+        <label>30</label>
+        <value>30</value>
+      </item>
+    </select1>
+    <upload mediatype="image/*" ref="/cms_field_campaign/site_image">
+      <label>Image</label>
+    </upload>
+    <input ref="/cms_field_campaign/comments">
+      <label>Site Comments</label>
+    </input>
+  </h:body>
+</h:html>
